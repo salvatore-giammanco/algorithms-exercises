@@ -5,7 +5,7 @@ fn bubble_sort(to_sort: &mut [u32]) {
     for i in (1..len).rev() {
         for j in (len - i..len).rev() {
             if to_sort[j - 1] > to_sort[j] {
-                (to_sort[j - 1], to_sort[j]) = (to_sort[j], to_sort[j - 1])
+                to_sort.swap(j, j - 1);
             }
         }
     }
