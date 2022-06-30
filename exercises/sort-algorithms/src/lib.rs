@@ -1,14 +1,11 @@
-pub fn insertion_sort(to_sort: &Vec<u32>) -> Vec<u32> {
-    let mut sorted = to_sort.clone();
-
-    for i in 0..sorted.len() {
+pub fn insertion_sort(to_sort: &mut Vec<u32>){
+    for i in 0..to_sort.len() {
         let mut j: usize = i;
-        while j > 0 && sorted[j] < sorted[j - 1] {
-            sorted.swap(j, j - 1);
+        while j > 0 && to_sort[j] < to_sort[j - 1] {
+            to_sort.swap(j, j - 1);
             j -= 1;
         }
     }
-    sorted
 }
 
 #[cfg(test)]
@@ -29,9 +26,9 @@ mod tests {
     
     #[test]
     fn test_insertion_sort() {
-        let test_data = test_setup();
-        let sorted = insertion_sort(&test_data.to_sort);
-        println!("{:?}", sorted);
-        assert_eq!(sorted, test_data.sorted);
+        let mut test_data = test_setup();
+        insertion_sort(&mut test_data.to_sort);
+        
+        assert_eq!(test_data.to_sort, test_data.sorted);
     }
 }
